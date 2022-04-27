@@ -1,0 +1,44 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button routerLink="/">
+                <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Menu </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div>
+        <ion-avatar slot="start">
+            <ion-icon size="large" name="thermometer"></ion-icon>
+        </ion-avatar>
+        <ion-label *ngFor="let dispositivo of this.unDispositivo">
+            <h1>Nombre: {{dispositivo.nombre}}</h1>
+            <h2>Ubicacion: {{dispositivo.ubicacion}}</h2>
+            <h2>Numero: {{dispositivo.dispositivoId}}</h2>
+        </ion-label>
+    </div>{{title}}
+    <div id="highcharts" style="width:100%; height:300px;"></div>
+    
+
+    <toggle-button (changed)="checked=$event"></toggle-button>
+
+    <ion-button (click)="verMediciones()" expand="full" shape="round">Ver todas las mediciones</ion-button>
+    <ion-list *ngFor="let medicion of this.todasMediciones">
+        <ion-item>
+            <ion-label>{{medicion.fecha| date: 'dd/MM/yy HH:MM'}}</ion-label>
+            <ion-label>Valor: {{medicion.valor}}</ion-label>
+        </ion-item>
+    </ion-list>
+
+    <ion-button (click)="verRiegos()" expand="full" shape="round">Ver log de riegos</ion-button>
+    <ion-list *ngFor="let riego of this.todosRiegos">
+        <ion-item>
+            <ion-label>{{riego.fecha| date: 'dd/MM/yy HH:MM'}}</ion-label>
+            <ion-label>{{riego.apertura| valvulaPipe}}</ion-label>
+        </ion-item>
+    </ion-list>
+    
+</ion-content>
